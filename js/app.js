@@ -306,9 +306,15 @@ if (!REDUCED) {
   const IMAGE_SCALE = 1.02; // levemente >1 para garantir cobertura total, sem faixas
   const WIPE_END = 0.05; // primeiros 5% do scroll da seção = revelação em círculo
 
-  const ROOMS = [
+  /* Desktop usa frames de 1600x1000 (recortados na faixa visível e ampliados
+     com lanczos); celular continua com os verticais de 784px, que lá são
+     reduzidos e por isso já ficam nítidos. */
+  const ROOMS = IS_MOBILE ? [
     { name: 'Studio 01', index: '01', frameCount: 121, path: (i) => `frames/studio-01/frame_${String(i).padStart(4, '0')}.jpg` },
     { name: 'Studio 02', index: '02', frameCount: 193, path: (i) => `frames/studio-02/frame_${String(i).padStart(4, '0')}.jpg` },
+  ] : [
+    { name: 'Studio 01', index: '01', frameCount: 121, path: (i) => `frames/studio-01-desktop/frame_${String(i).padStart(4, '0')}.webp` },
+    { name: 'Studio 02', index: '02', frameCount: 193, path: (i) => `frames/studio-02-desktop/frame_${String(i).padStart(4, '0')}.webp` },
   ];
   const TOTAL_FRAMES = ROOMS.reduce((sum, r) => sum + r.frameCount, 0);
   const frameSets = ROOMS.map((room) => new Array(room.frameCount));
@@ -360,8 +366,9 @@ if (!REDUCED) {
 
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
-    // no celular limita a 1x: 2x quadruplica os pixels a desenhar por frame
-    const dpr = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    /* A fonte tem 1600px de largura: pintar num buffer de 2x (2880px) só
+       inventaria pixels e custaria 4x mais por frame. 1,5x é o teto útil. */
+    const dpr = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
