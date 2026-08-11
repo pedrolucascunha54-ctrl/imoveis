@@ -59,6 +59,8 @@ const WA_MESSAGES = {
   studio: 'Olá! Vi os studios da Luctor pelo site e gostaria de consultar a disponibilidade.',
   comercial: 'Olá! Vi os imóveis comerciais da Luctor pelo site e gostaria de consultar as opções disponíveis.',
   visita: () => `Olá! Gostaria de agendar uma visita para ${AGENDA.dayLabel().toLowerCase()}${AGENDA.currentTime ? `, às ${AGENDA.currentTime}` : ''}. Podemos confirmar?`,
+  estudante: 'Olá! Sou estudante e gostaria de saber as condições especiais para locação de um studio da Luctor.',
+  executivo: 'Olá! Preciso de um studio para estadia corporativa e gostaria de saber as condições especiais da Luctor.',
 };
 
 function openWhatsApp(kind, location) {
@@ -839,26 +841,62 @@ const AGENDA = {
   const bar = document.getElementById('agenda-bar');
   if (!bar) return;
 
-  const dayEl = document.getElementById('agenda-day');
-  const timeEl = document.getElementById('agenda-time');
+  const textEl = document.getElementById('agenda-text');
+  const actionEl = document.getElementById('agenda-action');
 
   const SHOW_MS = 8000;    // tempo visível
   const CYCLE_MIN = 15000; // reaparece entre 15s…
   const CYCLE_MAX = 20000; // …e 20s
+
+  /* Mensagens que a faixa alterna. Para editar as condições especiais,
+     mexa apenas aqui (e nos blocos .perk do HTML). */
+  const MESSAGES = [
+    {
+      wa: 'visita',
+      action: 'Consultar',
+      html: () => `<strong>${AGENDA.dayLabel()}</strong>, <strong>${AGENDA.currentTime}</strong> disponível para visita`,
+      advance: () => nextSlot(),
+    },
+    {
+      wa: 'estudante',
+      action: 'Ver condição',
+      html: () => '<strong>Estudantes</strong> têm condição especial na locação',
+    },
+    {
+      wa: 'visita',
+      action: 'Consultar',
+      html: () => `<strong>${AGENDA.dayLabel()}</strong>, <strong>${AGENDA.currentTime}</strong> disponível para visita`,
+      advance: () => nextSlot(),
+    },
+    {
+      wa: 'executivo',
+      action: 'Ver condição',
+      html: () => '<strong>Executivos</strong> têm condição especial para estadias corporativas',
+    },
+  ];
+
   let slotIndex = Math.floor(Math.random() * AGENDA.slots.length);
+  let msgIndex = -1;
   let timer = null;
-  let suspended = false;   // true enquanto o CTA final está na tela
+  let suspended = false;
 
   function nextSlot() {
     slotIndex = (slotIndex + 1) % AGENDA.slots.length;
     AGENDA.currentTime = AGENDA.slots[slotIndex];
-    timeEl.textContent = AGENDA.currentTime;
-    dayEl.textContent = AGENDA.dayLabel();
+  }
+
+  function render() {
+    msgIndex = (msgIndex + 1) % MESSAGES.length;
+    const msg = MESSAGES[msgIndex];
+    if (msg.advance) msg.advance();
+    textEl.innerHTML = msg.html();
+    actionEl.innerHTML = `${msg.action} <span class="arrow">→</span>`;
+    bar.dataset.wa = msg.wa;
   }
 
   function show() {
     if (suspended) return;
-    nextSlot();
+    render();
     bar.classList.add('is-visible');
     clearTimeout(timer);
     timer = setTimeout(hide, SHOW_MS);
@@ -876,8 +914,8 @@ const AGENDA = {
   }
 
   nextSlot();
+  render();
 
-  // primeira aparição depois que a pessoa passa do Hero
   ScrollTrigger.create({
     trigger: '.hero',
     start: 'bottom 60%',
@@ -885,7 +923,6 @@ const AGENDA = {
     onEnter: () => setTimeout(show, 1800),
   });
 
-  // silencia enquanto o CTA final está na tela (lá o CTA já é o protagonista)
   ScrollTrigger.create({
     trigger: '.cta-final',
     start: 'top 80%',

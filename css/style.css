@@ -336,6 +336,21 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 }
 .whom-text h3 { font-size: clamp(1.75rem, 3.5vw, 3rem); margin: var(--space-md) 0 var(--space-md); }
 .whom-text p { color: var(--text-on-media); text-shadow: var(--glow-on-media); font-size: 18px; max-width: 460px; }
+
+/* Condição especial por perfil (estudante / executivo) */
+.perk {
+  font-size: 15px !important; margin-top: var(--space-md);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border-top: 1px solid rgba(184,138,85,.45); padding-top: var(--space-md);
+}
+.perk-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold-light);
+}
+.perk-pending {
+  display: block; font-family: var(--font-mono); font-size: 10.5px;
+  color: rgba(255,255,255,.55); letter-spacing: .04em;
+}
 .whom-text .eyebrow { color: var(--gold-light); text-shadow: var(--glow-on-media); }
 .whom-text h3 { text-shadow: var(--glow-on-media-strong); }
 
