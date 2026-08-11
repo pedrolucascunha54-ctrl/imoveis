@@ -487,6 +487,7 @@ if (!REDUCED) {
       const v = s.querySelector('video');
       if (!v) return;
       if (active && i === current) {
+        resolveVideoSrc(v);
         if (v.readyState === 0) v.load();
         v.play().catch(() => {});
       } else {
@@ -805,6 +806,18 @@ gsap.fromTo('.site-footer', { opacity: 0 }, {
    Vídeos em loop — carregam só perto da viewport, play/pause conforme
    entram/saem dela (evita baixar todos os vídeos de fundo no carregamento inicial)
    ========================================================================== */
+/* Escolhe a fonte do vídeo conforme o tamanho da tela.
+   Desktop recebe a versão recortada/ampliada (mais nítida na área visível);
+   celular continua recebendo o arquivo vertical original. Feito em JS porque
+   o atributo `media` em <source> não é confiável dentro de <video>. */
+function resolveVideoSrc(video) {
+  if (video.src) return;                       // já resolvido
+  const desktop = video.dataset.srcDesktop;
+  const mobile = video.dataset.src;
+  const chosen = (!IS_MOBILE && desktop) ? desktop : mobile;
+  if (chosen) video.src = chosen;
+}
+
 /* No celular a margem é menor: o vídeo só carrega quando está quase na tela,
    evitando dois ou três decodificando ao mesmo tempo enquanto se rola. */
 const VIDEO_MARGIN = IS_MOBILE ? '150px 0px' : '600px 0px';
@@ -813,6 +826,7 @@ document.querySelectorAll('video.bg-video').forEach((video) => {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        resolveVideoSrc(video);
         if (video.readyState === 0) video.load();
         video.play().catch(() => {});
       } else {
