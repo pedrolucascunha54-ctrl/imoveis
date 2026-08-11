@@ -4,8 +4,13 @@
    ========================================================================== */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IS_MOBILE = window.matchMedia('(max-width: 900px)').matches;
 
 gsap.registerPlugin(ScrollTrigger);
+
+/* No celular, esconder/mostrar a barra de endereço muda a altura da janela.
+   Sem isto, o ScrollTrigger recalcula tudo a cada mudança e o site "samba". */
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 /* ---------- Lenis smooth scroll ---------- */
 let lenis;
@@ -99,7 +104,9 @@ window.addEventListener('load', () => {
   tl.to(items, { opacity: 1, y: 0, stagger: 0.14 }, 0.25);
 });
 
-if (!REDUCED) {
+/* Parallax do Hero: só no desktop. No celular, mover a imagem a cada frame
+   de scroll é o que mais custa e o ganho visual é mínimo. */
+if (!REDUCED && !IS_MOBILE) {
   gsap.to('#hero-image', {
     yPercent: 14,
     ease: 'none',
@@ -160,7 +167,10 @@ const TEXT_ANIMS = {
   'scale-soft':   { from: { scale: 0.9, opacity: 0 }, to: { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' } },
   'rotate-soft':  { from: { y: 40, rotation: 2.5, opacity: 0 }, to: { y: 0, rotation: 0, opacity: 1, duration: 0.9, ease: 'power3.out' } },
   'clip-wipe':    { from: { clipPath: 'inset(100% 0 0 0)', opacity: 0 }, to: { clipPath: 'inset(0% 0 0 0)', opacity: 1, duration: 1.05, ease: 'power4.inOut' } },
-  'blur-focus':   { from: { filter: 'blur(10px)', y: 24, opacity: 0 }, to: { filter: 'blur(0px)', y: 0, opacity: 1, duration: 1, ease: 'power2.out' } },
+  // filter: blur() é caro em mobile; lá vira um fade-up equivalente
+  'blur-focus': IS_MOBILE
+    ? { from: { y: 30, opacity: 0 }, to: { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' } }
+    : { from: { filter: 'blur(10px)', y: 24, opacity: 0 }, to: { filter: 'blur(0px)', y: 0, opacity: 1, duration: 1, ease: 'power2.out' } },
 };
 
 const TEXT_SELECTOR = '.eyebrow, h2, h3, p, li, .btn, .section-number, .stat-label, dt, dd';
@@ -265,7 +275,7 @@ document.querySelectorAll('[data-reveal]').forEach((el) => {
   if (type === 'parallax-fade') {
     const media = el.querySelector('.dev-media');
     gsap.fromTo(media, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out', scrollTrigger: { trigger: el, start } });
-    if (!REDUCED) {
+    if (!REDUCED && !IS_MOBILE) {
       gsap.to(media.querySelector('img'), { yPercent: -8, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
     }
   }
@@ -273,7 +283,7 @@ document.querySelectorAll('[data-reveal]').forEach((el) => {
     const media = el.querySelector('.dev-media');
     gsap.fromTo(media, { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: el, start } });
   }
-  if (type === 'parallax-a' && !REDUCED) {
+  if (type === 'parallax-a' && !REDUCED && !IS_MOBILE) {
     gsap.to(el, { yPercent: -10, ease: 'none', scrollTrigger: { trigger: el.closest('.architecture'), start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 });
@@ -350,7 +360,8 @@ if (!REDUCED) {
 
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // no celular limita a 1x: 2x quadruplica os pixels a desenhar por frame
+    const dpr = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -794,6 +805,10 @@ gsap.fromTo('.site-footer', { opacity: 0 }, {
    Vídeos em loop — carregam só perto da viewport, play/pause conforme
    entram/saem dela (evita baixar todos os vídeos de fundo no carregamento inicial)
    ========================================================================== */
+/* No celular a margem é menor: o vídeo só carrega quando está quase na tela,
+   evitando dois ou três decodificando ao mesmo tempo enquanto se rola. */
+const VIDEO_MARGIN = IS_MOBILE ? '150px 0px' : '600px 0px';
+
 document.querySelectorAll('video.bg-video').forEach((video) => {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -804,7 +819,7 @@ document.querySelectorAll('video.bg-video').forEach((video) => {
         video.pause();
       }
     });
-  }, { threshold: 0.15, rootMargin: '600px 0px' });
+  }, { threshold: 0.15, rootMargin: VIDEO_MARGIN });
   io.observe(video);
 });
 
