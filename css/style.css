@@ -724,6 +724,49 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .cta-final-content h2 { text-shadow: var(--glow-on-media-strong); }
 .microcopy { font-size: 13px !important; color: rgba(255,255,255,.8) !important; margin-top: var(--space-md) !important; }
 
+/* Voltar ao topo: linha vertical que sobe, no vocabulário de traços do site */
+/* bottom elevado: precisa passar longe do botão fixo do WhatsApp */
+.back-to-top {
+  position: absolute; right: var(--edge); bottom: 150px; z-index: 3;
+  background: none; border: none; cursor: pointer; padding: var(--space-sm) 0;
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);
+  color: var(--paper); opacity: .75;
+  transition: opacity .35s var(--ease);
+}
+.back-to-top:hover { opacity: 1; }
+.back-to-top:focus-visible { outline: 1px solid var(--gold); outline-offset: 6px; }
+
+.btt-line { position: relative; width: 1px; height: 54px; background: rgba(247,245,240,.35); overflow: hidden; }
+.btt-line::after {
+  content: ''; position: absolute; left: 0; bottom: -100%; width: 100%; height: 100%;
+  background: var(--gold); animation: bttRise 2.4s var(--ease) infinite;
+}
+@keyframes bttRise {
+  0% { bottom: -100%; } 60% { bottom: 100%; } 100% { bottom: 100%; }
+}
+/* seta no topo da linha */
+.btt-line::before {
+  content: ''; position: absolute; top: 0; left: -3px; width: 7px; height: 7px;
+  border-top: 1px solid var(--paper); border-left: 1px solid var(--paper);
+  transform: rotate(45deg); z-index: 2;
+}
+.btt-label {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; writing-mode: vertical-rl; text-shadow: var(--glow-on-media);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    right: auto; left: var(--edge); transform: none;
+    bottom: var(--space-lg); flex-direction: row; gap: 10px;
+  }
+  .btt-line { width: 40px; height: 1px; }
+  .btt-line::after { inset: 0 auto 0 -100%; width: 100%; height: 100%; animation: bttSlide 2.4s var(--ease) infinite; }
+  .btt-line::before { top: 50%; left: 0; margin-top: -3.5px; transform: rotate(-45deg); }
+  .btt-label { writing-mode: horizontal-tb; font-size: 10px; }
+}
+@keyframes bttSlide { 0% { left: -100%; } 60% { left: 100%; } 100% { left: 100%; } }
+
 /* ==========================================================================
    27 · FOOTER
    ========================================================================== */

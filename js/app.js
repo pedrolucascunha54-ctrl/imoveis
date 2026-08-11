@@ -933,3 +933,25 @@ const AGENDA = {
     },
   });
 })();
+
+/* ==========================================================================
+   VOLTAR AO TOPO — no CTA final
+   ========================================================================== */
+(function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 2.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' });
+    }
+  });
+
+  // entra junto com o restante do CTA final
+  gsap.from(btn, {
+    opacity: 0, y: 16, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cta-final', start: 'top 60%', toggleActions: 'play none none none' },
+  });
+})();
