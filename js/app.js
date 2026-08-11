@@ -835,75 +835,64 @@ const AGENDA = {
   },
 };
 
-(function initAgendaPop() {
-  const pop = document.getElementById('agenda-pop');
-  if (!pop) return;
+(function initAgendaBar() {
+  const bar = document.getElementById('agenda-bar');
+  if (!bar) return;
 
   const dayEl = document.getElementById('agenda-day');
   const timeEl = document.getElementById('agenda-time');
-  const closeBtn = document.getElementById('agenda-close');
 
-  const SHOW_MS = 7000;              // tempo visível
-  const CYCLE_MIN = 15000;           // intervalo entre aparições: 15s…
-  const CYCLE_MAX = 20000;           // …a 20s
-  let dismissed = false;
+  const SHOW_MS = 8000;    // tempo visível
+  const CYCLE_MIN = 15000; // reaparece entre 15s…
+  const CYCLE_MAX = 20000; // …e 20s
   let slotIndex = Math.floor(Math.random() * AGENDA.slots.length);
   let timer = null;
-
-  dayEl.textContent = AGENDA.dayLabel();
+  let suspended = false;   // true enquanto o CTA final está na tela
 
   function nextSlot() {
     slotIndex = (slotIndex + 1) % AGENDA.slots.length;
     AGENDA.currentTime = AGENDA.slots[slotIndex];
     timeEl.textContent = AGENDA.currentTime;
+    dayEl.textContent = AGENDA.dayLabel();
   }
 
   function show() {
-    if (dismissed) return;
+    if (suspended) return;
     nextSlot();
-    dayEl.textContent = AGENDA.dayLabel();
-    pop.classList.add('is-visible');
-    setTimeout(hide, SHOW_MS);
+    bar.classList.add('is-visible');
+    clearTimeout(timer);
+    timer = setTimeout(hide, SHOW_MS);
   }
 
   function hide() {
-    pop.classList.remove('is-visible');
-    if (!dismissed) schedule();
+    bar.classList.remove('is-visible');
+    schedule();
   }
 
   function schedule() {
     clearTimeout(timer);
-    const wait = CYCLE_MIN + Math.random() * (CYCLE_MAX - CYCLE_MIN);
-    timer = setTimeout(show, wait);
+    if (suspended) return;
+    timer = setTimeout(show, CYCLE_MIN + Math.random() * (CYCLE_MAX - CYCLE_MIN));
   }
 
-  closeBtn.addEventListener('click', () => {
-    dismissed = true;
-    clearTimeout(timer);
-    pop.classList.remove('is-visible');
-    try { sessionStorage.setItem('luctor-agenda-dismissed', '1'); } catch (e) { /* modo privado */ }
-  });
+  nextSlot();
 
-  // quem já fechou não vê de novo nesta sessão
-  try {
-    if (sessionStorage.getItem('luctor-agenda-dismissed')) dismissed = true;
-  } catch (e) { /* modo privado */ }
-
-  // primeira aparição só depois que a pessoa passou do Hero
+  // primeira aparição depois que a pessoa passa do Hero
   ScrollTrigger.create({
     trigger: '.hero',
     start: 'bottom 60%',
     once: true,
-    onEnter: () => { if (!dismissed) setTimeout(show, 2500); },
+    onEnter: () => setTimeout(show, 1800),
   });
 
-  // some enquanto o CTA final está na tela (lá o CTA já é o protagonista)
+  // silencia enquanto o CTA final está na tela (lá o CTA já é o protagonista)
   ScrollTrigger.create({
     trigger: '.cta-final',
     start: 'top 80%',
     onToggle: (self) => {
-      if (self.isActive) { clearTimeout(timer); pop.classList.remove('is-visible'); }
-      else if (!dismissed) schedule();
+      suspended = self.isActive;
+      if (suspended) { clearTimeout(timer); bar.classList.remove('is-visible'); }
+      else schedule();
     },
   });
 })();

@@ -297,11 +297,13 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 /* ==========================================================================
    12 · MARQUEE
    ========================================================================== */
-.marquee-section { background: var(--navy-deep); padding: var(--space-lg) 0; overflow: hidden; }
+.marquee-section { background: #FFFFFF; padding: var(--space-lg) 0; overflow: hidden; }
 .marquee-track { display: flex; white-space: nowrap; width: max-content; }
 .marquee-track span {
-  font-family: var(--font-display); font-style: italic; font-weight: 400;
-  font-size: clamp(1.75rem, 4.5vw, 3.5rem); line-height: 1; color: var(--gold); letter-spacing: -.01em;
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: clamp(1.75rem, 4.5vw, 3.5rem); line-height: 1; letter-spacing: -.01em;
+  color: #000000;
+  -webkit-text-stroke: 2px #FFFFFF; paint-order: stroke fill;
   padding-right: 0;
 }
 
@@ -745,61 +747,38 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 @media (max-width: 640px) {
   .whatsapp-float { right: var(--space-md); bottom: var(--space-md); }
 }
-
 /* ==========================================================================
-   POP-UP DE AGENDA — horários reais de visita para o dia seguinte
+   FAIXA DE AGENDA — linha fina abaixo do cabeçalho, horários reais de visita
    ========================================================================== */
-.agenda-pop {
-  position: fixed; left: var(--space-lg); bottom: var(--space-lg); z-index: 88;
-  width: min(300px, calc(100vw - var(--space-lg) * 2));
-  background: var(--navy-deep); border-left: 2px solid var(--gold);
-  padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-md);
-  display: flex; flex-direction: column; gap: 3px;
-  opacity: 0; transform: translateY(16px); pointer-events: none;
-  transition: opacity .5s var(--ease), transform .5s var(--ease);
-  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+.agenda-bar {
+  position: fixed; top: 84px; left: 0; right: 0; z-index: 87;
+  height: 38px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-size: 13px; letter-spacing: .01em;
+  padding: 0 var(--space-md);
+  transform: translateY(-100%); opacity: 0; pointer-events: none;
+  transition: transform .55s var(--ease), opacity .45s var(--ease);
 }
-.agenda-pop.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.agenda-bar.is-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
 
-.agenda-label {
-  display: flex; align-items: center; gap: 7px;
-  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--muted-dark);
-}
 .agenda-dot {
-  width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: none;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--navy-deep); flex: none;
   animation: agendaPulse 2.4s ease-in-out infinite;
 }
-@keyframes agendaPulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes agendaPulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
 
-.agenda-main { font-family: var(--font-display); font-size: 21px; color: var(--paper); line-height: 1.2; margin-top: 2px; }
-.agenda-main strong { font-weight: 500; }
-.agenda-main #agenda-time { color: var(--gold); }
-.agenda-sub { font-size: 12.5px; color: var(--muted-dark); }
-.agenda-cta {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-sm);
-  font-size: 12.5px; font-weight: 600; color: var(--paper);
+.agenda-text strong { font-weight: 700; }
+.agenda-action {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
 }
-.agenda-cta .arrow { transition: transform .3s var(--ease); }
-.agenda-cta:hover .arrow { transform: translateX(4px); }
-
-.agenda-close {
-  position: absolute; top: 8px; right: 8px; width: 22px; height: 22px;
-  background: none; border: none; cursor: pointer; opacity: .5;
-  transition: opacity .3s var(--ease);
-}
-.agenda-close:hover { opacity: 1; }
-.agenda-close::before, .agenda-close::after {
-  content: ''; position: absolute; top: 50%; left: 5px; width: 12px; height: 1px; background: var(--paper);
-}
-.agenda-close::before { transform: rotate(45deg); }
-.agenda-close::after { transform: rotate(-45deg); }
+.agenda-action .arrow { transition: transform .3s var(--ease); }
+.agenda-bar:hover .agenda-action .arrow { transform: translateX(4px); }
+.agenda-bar:focus-visible { outline: 2px solid var(--navy-deep); outline-offset: -4px; }
 
 @media (max-width: 640px) {
-  .agenda-pop {
-    left: var(--space-md); right: calc(var(--space-md) + 66px); width: auto;
-    bottom: var(--space-md); padding: var(--space-sm) var(--space-md);
-  }
-  .agenda-main { font-size: 18px; }
-  .agenda-sub { font-size: 11.5px; }
+  .agenda-bar { height: 34px; font-size: 11.5px; gap: 7px; }
+  .agenda-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
