@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Luctor | Studios Mobiliados em São José do Rio Preto</title>
+<meta name="description" content="Studios mobiliados prontos para uma nova fase. Imóveis próprios da Luctor em São José do Rio Preto, com localização estratégica perto de hospital e faculdade." />
+<meta property="og:title" content="Luctor | Studios Mobiliados em São José do Rio Preto" />
+<meta property="og:description" content="Seu espaço. Seu ritmo. Sua nova fase. Studios mobiliados, prontos para viver." />
+<meta property="og:image" content="images/hero.webp" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0A2940" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230A2940%22/><text x=%2250%22 y=%2266%22 font-size=%2260%22 fill=%22%23C69A63%22 text-anchor=%22middle%22 font-family=%22serif%22>L</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="images/hero.webp" />
+<link rel="stylesheet" href="css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ApartmentComplex",
+  "name": "Luctor Imóveis",
+  "description": "Studios mobiliados para locação em São José do Rio Preto, imóveis próprios administrados pela Luctor.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "São José do Rio Preto",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ===================== HEADER (09) ===================== -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="#hero" class="logo">LUCTOR</a>
+    <nav class="main-nav" id="main-nav">
+      <a href="#studios">Studios</a>
+      <a href="#empreendimentos">Empreendimentos</a>
+      <a href="#localizacao">Localização</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#" class="btn btn-line header-cta" data-cta-location="header" data-wa="studio">Consultar disponibilidade</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#studios">Studios</a>
+    <a href="#empreendimentos">Empreendimentos</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" class="btn btn-solid" data-cta-location="mobile-nav" data-wa="studio">Consultar disponibilidade</a>
+  </div>
+  <div class="scroll-progress" id="scroll-progress"></div>
+</header>
+
+<main>
+
+<!-- ===================== 10 · HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <img src="images/hero.webp" alt="Studio mobiliado Luctor com home office integrado, sala, cama e varanda com vista para São José do Rio Preto" id="hero-image" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="eyebrow reveal-item" data-reveal-order="1">Luctor / São José do Rio Preto</p>
+    <h1 class="hero-headline">
+      <span class="line"><span class="word"><span>Seu</span></span> <span class="word"><span>espaço.</span></span></span>
+      <span class="line"><span class="word"><span>Seu</span></span> <span class="word"><span>ritmo.</span></span></span>
+      <span class="line accent"><span class="word"><span>Sua</span></span> <span class="word"><span>nova</span></span> <span class="word"><span>fase.</span></span></span>
+    </h1>
+    <p class="hero-sub reveal-item" data-reveal-order="5">Studios mobiliados para estudantes e executivos que procuram praticidade, conforto e localização estratégica em São José do Rio Preto.</p>
+    <div class="hero-ctas reveal-item" data-reveal-order="6">
+      <a href="#" class="btn btn-solid" data-cta-location="hero" data-wa="studio">Consultar disponibilidade <span class="arrow">→</span></a>
+      <a href="#studios" class="btn btn-text">Conhecer os studios</a>
+    </div>
+  </div>
+  <div class="scroll-indicator reveal-item" data-reveal-order="7">
+    <span>Descubra a Luctor</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<!-- ===================== 15 · EXPLORAÇÃO / CONHEÇA OS STUDIOS ===================== -->
+<section class="explore-wrap" id="explore-wrap">
+  <div class="explore-pin">
+    <div class="explore-heading">
+      <h2>Conheça os<br /><span class="accent">estúdios.</span></h2>
+    </div>
+    <div class="explore-stage">
+      <canvas id="explore-canvas" width="784" height="1176" aria-label="Sequência animada caminhando pelo interior dos studios Luctor"></canvas>
+      <div class="room-label" id="room-label">
+        <span class="room-label-index">01</span>
+        <span class="room-label-name">Studio 01</span>
+      </div>
+      <div class="explore-loading" id="explore-loading"><span id="explore-loading-bar"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11 · MANIFESTO ===================== -->
+<section class="manifesto" id="manifesto">
+  <div class="manifesto-media">
+    <video class="bg-video" muted loop playsinline preload="none" poster="images/manifesto-bg-poster.webp" aria-label="Luz dourada atravessando ripas de madeira, atmosfera calma de um studio Luctor">
+      <source src="video/manifesto-bg.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="manifesto-overlay"></div>
+  <span class="section-number">01</span>
+  <div class="manifesto-body">
+    <p class="eyebrow">Uma nova forma de morar</p>
+    <h2>Menos complicação.<br /><span class="accent">Mais espaço para viver.</span></h2>
+    <div class="manifesto-copy">
+      <p>Um studio não precisa ser apenas compacto. Ele precisa ser inteligente.</p>
+      <p>Na Luctor, cada espaço é pensado para acompanhar uma rotina dinâmica: morar, estudar, trabalhar e descansar em um ambiente funcional e pronto para receber você.</p>
+    </div>
+    <p class="manifesto-closer">Pronto para<br />a sua rotina.</p>
+  </div>
+</section>
+
+<!-- ===================== 12 · MARQUEE ===================== -->
+<section class="marquee-section">
+  <div class="marquee-track" id="marquee-track">
+    <span>MORAR • ESTUDAR • TRABALHAR • VIVER • MORAR • ESTUDAR • TRABALHAR • VIVER • </span>
+    <span>MORAR • ESTUDAR • TRABALHAR • VIVER • MORAR • ESTUDAR • TRABALHAR • VIVER • </span>
+  </div>
+</section>
+
+<!-- ===================== 13 · PARA QUEM É ===================== -->
+<section class="for-whom" id="para-quem">
+  <h2 class="for-whom-title">Feito para quem está em movimento.</h2>
+
+  <div class="whom-block" data-reveal="slide-left">
+    <div class="whom-media">
+      <video class="bg-video" muted loop playsinline preload="none" poster="images/estudantes.webp">
+        <source src="video/studio-01-angulo-2.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="whom-overlay"></div>
+    <div class="whom-text">
+      <p class="eyebrow">Estudantes</p>
+      <h3>Perto da rotina.<br /><span class="accent">Longe da complicação.</span></h3>
+      <p>Um espaço mobiliado para estudar, descansar e viver com mais praticidade.</p>
+    </div>
+  </div>
+
+  <div class="whom-block" data-reveal="slide-right">
+    <div class="whom-media">
+      <img src="images/executivos.webp" alt="Studio Luctor com mala de viagem, cozinha e varanda ao entardecer, para o perfil executivo" loading="lazy" />
+    </div>
+    <div class="whom-overlay"></div>
+    <div class="whom-text">
+      <p class="eyebrow">Executivos</p>
+      <h3>Chegue na cidade.<br /><span class="accent">Sua casa já está pronta.</span></h3>
+      <p>Para profissionais que precisam de localização, funcionalidade e conforto sem perder tempo montando um imóvel inteiro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 14 · STUDIOS ===================== -->
+<section class="studios" id="studios">
+  <h2 class="studios-title">Compactos no tamanho.<br /><span class="accent">Grandes na experiência.</span></h2>
+
+  <div class="studio-block studio-01" data-reveal="mask-reveal">
+    <div class="studio-media">
+      <video class="bg-video" muted loop playsinline preload="none" poster="images/studio-01-principal.webp">
+        <source src="video/studio-01-principal.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="studio-overlay"></div>
+    <div class="studio-info">
+      <span class="section-number small">02</span>
+      <h3>Studio 01</h3>
+      <ul class="feature-list">
+        <li>Ambiente integrado</li>
+        <li>Cozinha funcional</li>
+        <li>Banheiro privativo</li>
+        <li>Espaço otimizado</li>
+      </ul>
+      <p class="pending-note">[adicionar características confirmadas do memorial]</p>
+      <a href="#" class="btn btn-line" data-cta-location="studio-01" data-wa="studio">Consultar disponibilidade</a>
+    </div>
+  </div>
+
+  <div class="studio-block studio-02" data-reveal="mask-reveal-invert">
+    <div class="studio-media">
+      <video class="bg-video" muted loop playsinline preload="none" poster="images/studio-02-principal.webp">
+        <source src="video/studio-02-principal.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="studio-overlay"></div>
+    <div class="studio-info">
+      <span class="section-number small">03</span>
+      <h3>Um espaço que trabalha a favor da sua rotina.</h3>
+      <ul class="feature-list">
+        <li>Área de descanso</li>
+        <li>Espaço para trabalho e estudo</li>
+        <li>Cozinha integrada</li>
+        <li>Banheiro privativo</li>
+        <li>Mobiliário completo</li>
+      </ul>
+      <a href="#" class="btn btn-line" data-cta-location="studio-02" data-wa="studio">Conhecer este studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 16 · DETALHES ===================== -->
+<section class="details" id="detalhes">
+  <h2>Design que faz cada metro<br /><span class="accent">trabalhar melhor.</span></h2>
+  <div class="carousel" id="detail-carousel" aria-roledescription="carrossel" aria-label="Detalhes dos studios Luctor">
+    <div class="carousel-stage" id="carousel-stage">
+
+      <figure class="slide is-active is-plan" data-caption="Planta do Studio 01" data-note="Banheiro, área descoberta, descanso e cozinha no mesmo eixo.">
+        <div class="slide-inner">
+          <img src="images/planta-01.webp" alt="Planta baixa mobiliada do Studio 01 Luctor, vista superior" />
+        </div>
+      </figure>
+
+      <figure class="slide is-plan" data-caption="Planta do Studio 02" data-note="Cozinha, home office, banheiro e sacada em 1 ambiente.">
+        <div class="slide-inner">
+          <img src="images/planta-02.webp" alt="Planta baixa mobiliada do Studio 02 Luctor, vista superior" loading="lazy" />
+        </div>
+      </figure>
+
+      <figure class="slide" data-caption="Varanda integrada" data-note="A área externa como extensão do ambiente.">
+        <div class="slide-inner">
+          <img src="images/studio-02-varanda-interior.webp" alt="Varanda com plantas integrada ao interior do studio Luctor em luz dourada" loading="lazy" />
+        </div>
+      </figure>
+
+      <figure class="slide" data-caption="Marcenaria em ripas" data-note="Divisão de ambientes sem fechar o espaço.">
+        <div class="slide-inner">
+          <video class="slide-video" muted loop playsinline preload="none" poster="images/studio-02-cozinha-varanda.webp">
+            <source src="video/studio-02-cozinha-varanda.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </figure>
+
+      <figure class="slide" data-caption="Espaço de trabalho" data-note="Bancada contínua, pensada para o dia inteiro.">
+        <div class="slide-inner">
+          <img src="images/studio-01-angulo-2.webp" alt="Bancada de trabalho com laptop e cadeira no studio Luctor" loading="lazy" />
+        </div>
+      </figure>
+
+      <figure class="slide" data-caption="Ambiente integrado" data-note="Cozinha, descanso e trabalho no mesmo eixo.">
+        <div class="slide-inner">
+          <img src="images/hero.webp" alt="Vista completa do studio Luctor integrando cozinha, cama, sala e varanda" loading="lazy" />
+        </div>
+      </figure>
+
+      <figure class="slide" data-caption="Cozinha funcional" data-note="Bancada em pedra, pronta para o uso diário.">
+        <div class="slide-inner">
+          <img src="images/studio-02-principal.webp" alt="Cozinha com bancada em pedra e marcenaria em madeira no studio Luctor" loading="lazy" />
+        </div>
+      </figure>
+
+      <div class="carousel-caption" id="carousel-caption">
+        <span class="carousel-index"><em id="caption-index">01</em> / <span id="caption-total">05</span></span>
+        <span class="carousel-title" id="caption-title">Varanda integrada</span>
+        <span class="carousel-note" id="caption-note">A área externa como extensão do ambiente.</span>
+      </div>
+
+      <div class="drag-hint" id="drag-hint" aria-hidden="true">
+        <span class="drag-hint-rail"><i class="drag-hint-dot"></i></span>
+        <span class="drag-hint-label">Arraste para explorar</span>
+      </div>
+
+      <button class="carousel-arrow prev" id="carousel-prev" aria-label="Detalhe anterior"></button>
+      <button class="carousel-arrow next" id="carousel-next" aria-label="Próximo detalhe"></button>
+    </div>
+
+    <div class="carousel-progress" id="carousel-progress" role="tablist" aria-label="Selecionar detalhe"></div>
+  </div>
+</section>
+
+<!-- ===================== 17 · LOCALIZAÇÃO ===================== -->
+<section class="location" id="localizacao">
+  <div class="location-bg">
+    <img src="images/localizacao.webp" alt="Vista aérea noturna de São José do Rio Preto" loading="lazy" />
+  </div>
+  <div class="location-content">
+    <p class="eyebrow">Localização</p>
+    <h2>Mais perto do que faz<br /><span class="accent">parte da sua rotina.</span></h2>
+    <p class="location-copy">Escolhemos localizações estratégicas para reduzir deslocamentos e deixar o dia a dia mais simples.</p>
+    <a href="#" class="btn btn-line" data-cta-location="localizacao" data-wa="studio">Ver localização</a>
+  </div>
+  <div class="location-map">
+    <svg viewBox="0 0 600 600" id="map-svg" aria-hidden="true">
+      <g id="map-lines" fill="none" stroke="#B88A55" stroke-width="1.4">
+        <line class="map-line" data-len="1" x1="300" y1="300" x2="180" y2="200" />
+        <line class="map-line" data-len="1" x1="300" y1="300" x2="430" y2="220" />
+        <line class="map-line" data-len="1" x1="300" y1="300" x2="380" y2="420" />
+        <line class="map-line" data-len="1" x1="300" y1="300" x2="150" y2="400" />
+      </g>
+      <g id="map-points">
+        <circle class="map-point" cx="180" cy="200" r="4" fill="#B88A55" />
+        <circle class="map-point" cx="430" cy="220" r="4" fill="#B88A55" />
+        <circle class="map-point" cx="380" cy="420" r="4" fill="#B88A55" />
+        <circle class="map-point" cx="150" cy="400" r="4" fill="#B88A55" />
+        <circle cx="300" cy="300" r="6" fill="#F7F5F0" />
+      </g>
+      <text x="180" y="188" class="map-label">[HOSPITAL] · 4 quadras</text>
+      <text x="430" y="208" class="map-label">[FACULDADE] · 6 quadras</text>
+      <text x="380" y="440" class="map-label">[PONTO 3]</text>
+      <text x="150" y="416" class="map-label">[PONTO 4]</text>
+      <text x="300" y="325" class="map-center-label">LUCTOR</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ===================== 18 · EMPREENDIMENTOS ===================== -->
+<section class="developments" id="empreendimentos">
+  <h2 class="developments-title">Espaços Luctor.</h2>
+
+  <div class="dev-block" data-reveal="parallax-fade">
+    <div class="dev-media">
+      <img src="images/fachada-principal.webp" alt="Fachada noturna do primeiro empreendimento Luctor" loading="lazy" />
+    </div>
+    <div class="dev-info">
+      <span class="section-number small">01</span>
+      <h3>[NOME DO EMPREENDIMENTO]</h3>
+      <p class="dev-meta">[BAIRRO] · 40 studios [confirmar antes de publicar] · [STATUS]</p>
+      <a href="#" class="btn btn-line" data-cta-location="empreendimento-01" data-wa="studio">Explorar empreendimento</a>
+    </div>
+  </div>
+
+  <div class="dev-block reverse" data-reveal="scale-up">
+    <div class="dev-media dev-placeholder">
+      <span>Render do Empreendimento 02<br />[pendente]</span>
+    </div>
+    <div class="dev-info">
+      <span class="section-number small">02</span>
+      <h3>[NOME DO EMPREENDIMENTO]</h3>
+      <p class="dev-meta">[BAIRRO] · [INSERIR INFORMAÇÕES]</p>
+      <a href="#" class="btn btn-line" data-cta-location="empreendimento-02" data-wa="studio">Explorar empreendimento</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 19 · ARQUITETURA ===================== -->
+<section class="architecture" id="arquitetura">
+  <p class="eyebrow">Arquitetura</p>
+  <h2>Contemporâneo por fora.<br /><span class="accent">Inteligente por dentro.</span></h2>
+  <p class="architecture-copy">Volumes marcantes, materiais de baixa manutenção e soluções pensadas para eficiência e valorização do empreendimento.</p>
+  <div class="architecture-gallery">
+    <img src="images/fachada-principal.webp" alt="Fachada noturna do empreendimento Luctor com iluminação arquitetônica" loading="lazy" data-reveal="parallax-a" />
+  </div>
+</section>
+
+<!-- ===================== 20 · NÚMEROS ===================== -->
+<section class="numbers" id="numeros">
+  <div class="number-block">
+    <span class="number-value" data-count-to="40">0</span>
+    <span class="number-label">Unidades no<br />primeiro projeto</span>
+  </div>
+  <div class="number-block">
+    <span class="number-value" data-count-to="2">0</span>
+    <span class="number-label">Empreendimentos</span>
+  </div>
+  <div class="number-block">
+    <span class="number-value">[XX]</span>
+    <span class="number-label">Studios<br />disponíveis</span>
+  </div>
+  <div class="number-block">
+    <span class="number-value">[XX]</span>
+    <span class="number-label">Imóveis<br />comerciais</span>
+  </div>
+</section>
+
+<!-- ===================== 21 · DIFERENCIAIS ===================== -->
+<section class="differentials" id="diferenciais">
+  <h2>O essencial.<br /><span class="accent">Bem resolvido.</span></h2>
+  <div class="diff-list" id="diff-list">
+    <div class="diff-item" data-image="images/fachada-principal.webp">
+      <span class="section-number small">01</span>
+      <div class="diff-text"><h3>Imóveis próprios</h3><p>Mais proximidade entre você e quem administra o imóvel.</p></div>
+    </div>
+    <div class="diff-item" data-image="images/studio-02-principal.webp">
+      <span class="section-number small">02</span>
+      <div class="diff-text"><h3>Mobiliados</h3><p>Menos tempo montando uma casa. Mais tempo vivendo.</p></div>
+    </div>
+    <div class="diff-item" data-image="images/localizacao.webp">
+      <span class="section-number small">03</span>
+      <div class="diff-text"><h3>Localização</h3><p>Próximo aos lugares que fazem parte da sua rotina.</p></div>
+    </div>
+    <div class="diff-item" data-image="images/studio-01-principal.webp">
+      <span class="section-number small">04</span>
+      <div class="diff-text"><h3>Layout inteligente</h3><p>Cada metro pensado para funcionar.</p></div>
+    </div>
+    <div class="diff-item" data-image="images/studio-01-angulo-2.webp">
+      <span class="section-number small">05</span>
+      <div class="diff-text"><h3>Arquitetura contemporânea</h3><p>Espaços atuais, funcionais e agradáveis.</p></div>
+    </div>
+  </div>
+  <div class="diff-preview" id="diff-preview" style="background-image:url('images/fachada-principal.webp')"></div>
+</section>
+
+<!-- ===================== 22 · IMÓVEIS COMERCIAIS ===================== -->
+<section class="commercial" id="comercial">
+  <h2>Espaços para negócios<br />que também estão em movimento.</h2>
+  <p>Além dos studios, a Luctor possui imóveis comerciais próprios em São José do Rio Preto.</p>
+  <a href="#" class="btn btn-text" data-cta-location="comercial" data-wa="comercial">Consultar imóveis comerciais</a>
+</section>
+
+<!-- ===================== 23 · SOBRE ===================== -->
+<section class="about" id="sobre">
+  <div class="about-text">
+    <h2>Não administramos anúncios.<br /><span class="accent">Cuidamos dos nossos próprios espaços.</span></h2>
+    <p>A Luctor atua com locação e administração de patrimônio imobiliário próprio, desenvolvendo espaços voltados à praticidade, localização e qualidade de vida.</p>
+  </div>
+  <div class="about-detail">
+    <img src="images/studio-02-cozinha-varanda.webp" alt="Detalhe de marcenaria ripada em madeira, studio Luctor" loading="lazy" />
+  </div>
+</section>
+
+<!-- ===================== 24 · JORNADA ===================== -->
+<section class="journey" id="jornada">
+  <h2>Encontrar seu próximo espaço<br />pode ser simples.</h2>
+  <div class="journey-list">
+    <svg class="journey-line" viewBox="0 0 4 500" preserveAspectRatio="none" aria-hidden="true">
+      <line id="journey-stroke" x1="2" y1="0" x2="2" y2="500" stroke="#B88A55" stroke-width="2" />
+    </svg>
+    <div class="journey-step"><span class="section-number small">01</span><p>Escolha o perfil: Studio ou Comercial</p></div>
+    <div class="journey-step"><span class="section-number small">02</span><p>Consulte disponibilidade</p></div>
+    <div class="journey-step"><span class="section-number small">03</span><p>Fale diretamente com a Luctor</p></div>
+    <div class="journey-step"><span class="section-number small">04</span><p>Conheça o imóvel</p></div>
+    <div class="journey-step"><span class="section-number small">05</span><p>Comece sua nova fase</p></div>
+  </div>
+</section>
+
+<!-- ===================== 25 · FAQ ===================== -->
+<section class="faq" id="faq">
+  <h2>Perguntas frequentes</h2>
+  <div class="accordion" id="accordion">
+    <div class="accordion-item">
+      <button class="accordion-trigger">Os studios são mobiliados?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Sim, todos os studios Luctor são entregues mobiliados, prontos para morar.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Os imóveis são próprios da Luctor?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Sim, a Luctor administra e loca patrimônio próprio, não intermedia anúncios de terceiros.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Os studios ficam próximos a faculdades?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Sim, o empreendimento fica a aproximadamente 6 quadras de uma faculdade. [inserir nome quando confirmado]</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Há opções para executivos?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Sim, os studios atendem tanto estudantes quanto profissionais e executivos em passagem pela cidade.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Como consultar unidades disponíveis?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Diretamente pelo WhatsApp, pelo botão "Consultar disponibilidade" em qualquer parte do site.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Existem imóveis comerciais?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>Sim, a Luctor também possui imóveis comerciais próprios em São José do Rio Preto.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Como agendar uma visita?<span class="accordion-icon"></span></button>
+      <div class="accordion-panel"><p>[INSERIR RESPOSTA]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 26 · CTA FINAL ===================== -->
+<section class="cta-final" id="cta-final">
+  <div class="cta-final-media">
+    <img src="images/cta-final-noite.webp" alt="Studio Luctor à noite, hora azul, pronto para receber você" loading="lazy" />
+  </div>
+  <div class="cta-final-content">
+    <h2>Seu próximo espaço<br /><span class="accent">pode estar aqui.</span></h2>
+    <p>Consulte os studios disponíveis e encontre um espaço que combine com a sua rotina.</p>
+    <a href="#" class="btn btn-solid btn-large" data-cta-location="cta-final" data-wa="studio">Consultar disponibilidade <span class="arrow">→</span></a>
+    <p class="microcopy">Fale diretamente com nossa equipe.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== 27 · FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <span class="footer-logo">LUCTOR</span>
+    <p>Negócios Imobiliários</p>
+    <p class="footer-city">São José do Rio Preto, SP</p>
+  </div>
+  <nav class="footer-nav">
+    <a href="#studios">Studios</a>
+    <a href="#comercial">Imóveis comerciais</a>
+    <a href="#empreendimentos">Empreendimentos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#" data-cta-location="footer" data-wa="studio">Contato</a>
+  </nav>
+  <div class="footer-contact">
+    <p>WhatsApp: <span>[WHATSAPP]</span></p>
+    <p>Instagram: <a href="https://www.instagram.com/luctorimoveis/" target="_blank" rel="noopener">@luctorimoveis</a></p>
+    <p>E-mail: <span>[E-MAIL]</span></p>
+    <p>Endereço: <span>[ENDEREÇO]</span></p>
+    <p class="legal">CRECI / informações legais: [INSERIR SE APLICÁVEL]</p>
+  </div>
+</footer>
+
+<!-- ===================== POP-UP DE AGENDA (horários reais de visita) ===================== -->
+<aside class="agenda-pop" id="agenda-pop" role="status" aria-live="polite">
+  <button class="agenda-close" id="agenda-close" aria-label="Fechar aviso de agenda"></button>
+  <span class="agenda-label"><i class="agenda-dot"></i> Agenda de visitas</span>
+  <p class="agenda-main"><strong id="agenda-day">Amanhã</strong>, <strong id="agenda-time">14h</strong></p>
+  <p class="agenda-sub">horário disponível para visita</p>
+  <a href="#" class="agenda-cta" data-cta-location="agenda-pop" data-wa="visita">Consultar no WhatsApp <span class="arrow">→</span></a>
+</aside>
+
+<!-- ===================== 28 · WHATSAPP FLUTUANTE ===================== -->
+<a href="#" class="whatsapp-float" id="whatsapp-float" data-cta-location="float" data-wa="studio" aria-label="Falar com a Luctor pelo WhatsApp">
+  <svg viewBox="0 0 32 32" width="27" height="27" fill="currentColor" aria-hidden="true">
+    <path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.9 3.2 18.5 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.8 16 28.8zm7.4-9.6c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.3 2.8 4.3 6.8 6 .9.4 1.7.6 2.2.8.9.3 1.8.3 2.4.2.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/>
+  </svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
