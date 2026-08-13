@@ -314,7 +314,7 @@ if (!REDUCED) {
     { name: 'Studio 02', index: '02', frameCount: 193, path: (i) => `frames/studio-02/frame_${String(i).padStart(4, '0')}.jpg` },
   ] : [
     { name: 'Studio 01', index: '01', frameCount: 121, path: (i) => `frames/studio-01-desktop/frame_${String(i).padStart(4, '0')}.webp` },
-    { name: 'Studio 02', index: '02', frameCount: 193, path: (i) => `frames/studio-02-desktop/frame_${String(i).padStart(4, '0')}.webp` },
+    { name: 'Studio 02', index: '02', frameCount: 121, path: (i) => `frames/studio-02-desktop/frame_${String(i).padStart(4, '0')}.webp` },
   ];
   const TOTAL_FRAMES = ROOMS.reduce((sum, r) => sum + r.frameCount, 0);
   const frameSets = ROOMS.map((room) => new Array(room.frameCount));
