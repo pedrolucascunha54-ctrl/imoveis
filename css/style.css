@@ -158,7 +158,8 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 84px;
-  transition: background .4s var(--ease), backdrop-filter .4s var(--ease);
+  /* só a cor faz transição: animar backdrop-filter recompunha o header a cada frame */
+  transition: background .4s var(--ease);
 }
 .site-header.solid { background: rgba(6, 27, 44, .92); backdrop-filter: blur(8px); }
 
@@ -171,9 +172,10 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .logo { display: flex; align-items: center; }
 .logo img {
   display: block; height: 46px; width: auto;
-  /* mesma lógica do texto sobre mídia: leve sombra para segurar a leitura sobre o hero */
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 2px 14px rgba(0,0,0,.4));
-  transition: opacity .3s var(--ease), filter .4s var(--ease);
+  /* mesma lógica do texto sobre mídia: leve sombra para segurar a leitura sobre o hero.
+     Uma sombra só, e fora da transição: animar filter repinta a logo a cada frame. */
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.6));
+  transition: opacity .3s var(--ease);
 }
 .site-header.solid .logo img { filter: none; }
 .logo:hover img { opacity: .78; }

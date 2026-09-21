@@ -45,7 +45,6 @@ ScrollTrigger.create({
   end: 'bottom bottom',
   onUpdate: (self) => { progressBar.style.width = (self.progress * 100).toFixed(2) + '%'; },
 });
-window.addEventListener('scroll', () => header.classList.toggle('solid', window.scrollY > 80), { passive: true });
 
 navToggle.addEventListener('click', () => {
   const open = mobileNav.classList.toggle('open');
@@ -370,21 +369,27 @@ if (!REDUCED) {
     next();
   }
 
+  /* Medidas em CSS px, lidas só quando o tamanho muda. Ler
+     getBoundingClientRect() dentro do draw forçava o layout a cada tick do
+     scroll, que é de onde vinha boa parte da travada nesta seção. */
+  let cssW = 0, cssH = 0;
+
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
+    cssW = rect.width;
+    cssH = rect.height;
     /* A fonte tem 1600px de largura: pintar num buffer de 2x (2880px) só
        inventaria pixels e custaria 4x mais por frame. 1,5x é o teto útil. */
     const dpr = IS_MOBILE ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (currentKey) drawFrame(currentKey.roomIdx, currentKey.frameIdx);
   }
 
   function drawFrame(roomIdx, frameIdx) {
     const img = frameSets[roomIdx][frameIdx];
-    const rect = canvas.getBoundingClientRect();
-    const cw = rect.width, ch = rect.height;
+    const cw = cssW, ch = cssH;
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, cw, ch);
     if (!img || !img.complete || !img.naturalWidth) return;
@@ -397,7 +402,30 @@ if (!REDUCED) {
   }
 
   window.addEventListener('resize', resizeCanvas);
+  ScrollTrigger.addEventListener('refresh', resizeCanvas);
   resizeCanvas();
+
+  /* O scrub dispara onUpdate várias vezes por frame. Em vez de desenhar em
+     todas, guardamos o frame desejado e pintamos uma única vez por tick.
+     Bônus: se a imagem ainda não carregou, tenta de novo no tick seguinte em
+     vez de ficar com o frame anterior preso na tela. */
+  let wantRoom = -1, wantFrame = -1, needsDraw = false;
+
+  function requestFrame(roomIdx, frameIdx) {
+    if (roomIdx === wantRoom && frameIdx === wantFrame) return;
+    wantRoom = roomIdx;
+    wantFrame = frameIdx;
+    needsDraw = true;
+  }
+
+  gsap.ticker.add(() => {
+    if (!needsDraw) return;
+    const set = frameSets[wantRoom];
+    const img = set && set[wantFrame];
+    if (!img || !img.complete || !img.naturalWidth) return;
+    needsDraw = false;
+    drawFrame(wantRoom, wantFrame);
+  });
   updateLoadingBar();
   window.addEventListener('load', () => setTimeout(preloadRest, 300));
   // segurança: se algo travar o load, garante que a barra some mesmo assim
@@ -444,8 +472,7 @@ if (!REDUCED) {
       const roomProgress = roomIdx === 0 ? progress / 0.5 : (progress - 0.5) / 0.5;
       const roomFrameCount = ROOMS[roomIdx].frameCount;
       const frameIdx = Math.min(roomFrameCount - 1, Math.floor(roomProgress * (roomFrameCount - 1)));
-      const set = frameSets[roomIdx];
-      if (set[frameIdx] && set[frameIdx].complete) drawFrame(roomIdx, frameIdx);
+      requestFrame(roomIdx, frameIdx);
       setActiveRoom(roomIdx);
     },
   });
