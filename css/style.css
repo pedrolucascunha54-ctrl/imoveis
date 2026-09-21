@@ -787,9 +787,10 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .footer-nav { display: flex; justify-content: center; gap: var(--space-lg); flex-wrap: wrap; margin-bottom: var(--space-2xl); font-size: 14px; }
 .footer-nav a { color: var(--muted-dark); }
 .footer-nav a:hover { color: var(--paper); }
-.footer-contact { max-width: 480px; margin: 0 auto; text-align: center; font-size: 13px; color: var(--muted-dark); display: flex; flex-direction: column; gap: 6px; }
+.footer-contact { max-width: 620px; margin: 0 auto; text-align: center; font-size: 13px; color: var(--muted-dark); display: flex; flex-direction: column; gap: 6px; }
+.footer-address { line-height: 1.55; }
 .footer-contact span { color: var(--paper); }
-.footer-contact .legal { margin-top: var(--space-md); font-family: var(--font-mono); font-size: 11px; }
+.footer-contact .legal { margin-top: var(--space-md); font-family: var(--font-mono); font-size: 11px; line-height: 1.7; letter-spacing: .01em; }
 
 /* ==========================================================================
    28 · WHATSAPP FLUTUANTE
