@@ -59,7 +59,7 @@ mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () =>
 /* ==========================================================================
    WHATSAPP — floating CTA + message routing
    ========================================================================== */
-const WA_NUMBER = '55XXXXXXXXXXX'; // TODO: substituir pelo número oficial da Luctor
+const WA_NUMBER = '5517992215254';
 const WA_MESSAGES = {
   studio: 'Olá! Vi os studios da Luctor pelo site e gostaria de consultar a disponibilidade.',
   comercial: 'Olá! Vi os imóveis comerciais da Luctor pelo site e gostaria de consultar as opções disponíveis.',

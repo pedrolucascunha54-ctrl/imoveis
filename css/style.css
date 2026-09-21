@@ -170,7 +170,7 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 
 .logo { display: flex; align-items: center; }
 .logo img {
-  display: block; height: 30px; width: auto;
+  display: block; height: 46px; width: auto;
   /* mesma lógica do texto sobre mídia: leve sombra para segurar a leitura sobre o hero */
   filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 2px 14px rgba(0,0,0,.4));
   transition: opacity .3s var(--ease), filter .4s var(--ease);
@@ -215,7 +215,7 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 }
 
 @media (max-width: 900px) {
-  .logo img { height: 26px; }
+  .logo img { height: 38px; }
   .footer-logo { height: 62px; }
   .main-nav, .header-cta { display: none; }
   .nav-toggle { display: block; }
