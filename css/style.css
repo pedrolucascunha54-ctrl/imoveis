@@ -168,7 +168,15 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg);
 }
 
-.logo { font-family: var(--font-display); font-size: 22px; letter-spacing: .08em; color: var(--paper); }
+.logo { display: flex; align-items: center; }
+.logo img {
+  display: block; height: 30px; width: auto;
+  /* mesma lógica do texto sobre mídia: leve sombra para segurar a leitura sobre o hero */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 2px 14px rgba(0,0,0,.4));
+  transition: opacity .3s var(--ease), filter .4s var(--ease);
+}
+.site-header.solid .logo img { filter: none; }
+.logo:hover img { opacity: .78; }
 
 .main-nav { display: flex; gap: var(--space-lg); }
 .main-nav a { font-size: 14px; color: var(--paper); opacity: .85; position: relative; }
@@ -207,6 +215,8 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 }
 
 @media (max-width: 900px) {
+  .logo img { height: 26px; }
+  .footer-logo { height: 62px; }
   .main-nav, .header-cta { display: none; }
   .nav-toggle { display: block; }
   .mobile-nav { display: flex; }
@@ -772,7 +782,7 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
    ========================================================================== */
 .site-footer { background: var(--navy-deep); color: var(--paper); padding: var(--space-3xl) var(--edge) var(--space-xl); }
 .footer-top { text-align: center; margin-bottom: var(--space-2xl); }
-.footer-logo { font-family: var(--font-display); font-size: 28px; letter-spacing: .08em; }
+.footer-logo { display: block; height: 76px; width: auto; margin: 0 auto; }
 .footer-top p { color: var(--muted-dark); font-size: 14px; margin-top: 4px; }
 .footer-nav { display: flex; justify-content: center; gap: var(--space-lg); flex-wrap: wrap; margin-bottom: var(--space-2xl); font-size: 14px; }
 .footer-nav a { color: var(--muted-dark); }
