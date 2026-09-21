@@ -66,6 +66,10 @@ const WA_MESSAGES = {
   visita: () => `Olá! Gostaria de agendar uma visita para ${AGENDA.dayLabel().toLowerCase()}${AGENDA.currentTime ? `, às ${AGENDA.currentTime}` : ''}. Podemos confirmar?`,
   estudante: 'Olá! Sou estudante e gostaria de saber as condições especiais para locação de um studio da Luctor.',
   executivo: 'Olá! Preciso de um studio para estadia corporativa e gostaria de saber as condições especiais da Luctor.',
+  kitnet: 'Olá! Vi as kitnets mobiliadas da Luctor pelo site e gostaria de consultar a disponibilidade.',
+  estudio: 'Olá! Vi os estúdios alto padrão mobiliados da Luctor pelo site e gostaria de consultar a disponibilidade.',
+  sala: 'Olá! Vi no site que a Luctor tem salas comerciais e gostaria de consultar as opções disponíveis.',
+  barracao: 'Olá! Vi no site que a Luctor tem barracões e gostaria de consultar as opções disponíveis.',
 };
 
 function openWhatsApp(kind, location) {
@@ -248,6 +252,8 @@ document.querySelectorAll('.studio-info').forEach((el) => revealText(el, 'fade-u
 document.querySelectorAll('.dev-info').forEach((el) => revealText(el, 'slide-in-right', { start: 'top 80%' }));
 document.querySelectorAll('.accordion-item').forEach((el, i) =>
   revealText(el, 'fade-up', { start: 'top 90%', stagger: 0.04 }));
+document.querySelectorAll('.tipo-row, .tipo-mini').forEach((el) =>
+  revealText(el, 'fade-up', { start: 'top 88%', stagger: 0.05 }));
 
 document.querySelectorAll('[data-reveal]').forEach((el) => {
   const type = el.dataset.reveal;

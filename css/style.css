@@ -369,6 +369,90 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 }
 
 /* ==========================================================================
+   13.5 · O QUE A LUCTOR ALUGA — tipologias
+   ========================================================================== */
+.tipologias { background: var(--stone); padding: var(--space-4xl) var(--edge); }
+
+.tipologias-head { max-width: var(--container-max); margin: 0 auto var(--space-3xl); }
+.tipologias-head h2 {
+  font-size: clamp(2.25rem, 6vw, 4.5rem); line-height: 1.02; margin-top: var(--space-sm);
+}
+.tipologias-lead {
+  max-width: var(--read-width); margin-top: var(--space-lg); color: var(--muted-light);
+}
+
+.tipo-tier { max-width: var(--container-max); margin: 0 auto; }
+.tier-label {
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .18em; color: var(--gold);
+  padding-bottom: var(--space-sm); border-bottom: 1px solid var(--line-light);
+}
+
+/* Linha editorial: sem card, só régua, número e tipografia grande */
+.tipo-row {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: start;
+  gap: var(--space-lg); padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--line-light);
+  position: relative; color: var(--ink);
+}
+.tipo-row::after {
+  content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease);
+}
+.tipo-row:hover::after { transform: scaleX(1); }
+
+.tipo-index {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-size: 13px; color: var(--gold); padding-top: .9em;
+}
+.tipo-body { display: block; }
+.tipo-name {
+  display: block; font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem); line-height: 1.08;
+  transition: transform .5s var(--ease);
+}
+.tipo-row:hover .tipo-name { transform: translateX(10px); }
+.tipo-desc {
+  display: block; max-width: var(--read-width); margin-top: var(--space-sm);
+  color: var(--muted-light); font-size: 15px;
+}
+.tipo-cta {
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .14em; white-space: nowrap; padding-top: 1.1em; color: var(--ink);
+}
+.tipo-cta .arrow { display: inline-block; transition: transform .4s var(--ease); }
+.tipo-row:hover .tipo-cta .arrow, .tipo-mini:hover .tipo-cta .arrow { transform: translateX(6px); }
+
+/* Segundo nível: comercial, presente mas sem competir com a moradia */
+.tipo-tier-alt { margin-top: var(--space-3xl); }
+.tipo-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+  background: var(--line-light); border-bottom: 1px solid var(--line-light);
+}
+.tipo-mini {
+  background: var(--stone); padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  display: flex; flex-direction: column; gap: var(--space-xs);
+  color: var(--ink); transition: background .4s var(--ease);
+}
+.tipo-mini:hover { background: var(--off-white); }
+.tipo-mini .tipo-name { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.tipo-mini .tipo-cta { padding-top: var(--space-md); }
+
+.pending-note.light { color: var(--muted-light); text-shadow: none; }
+.tipologias-pending {
+  max-width: var(--container-max); margin: var(--space-xl) auto 0; text-align: right;
+}
+
+@media (max-width: 768px) {
+  .tipo-row { grid-template-columns: auto 1fr; gap: var(--space-md); padding: var(--space-lg) 0; }
+  .tipo-row .tipo-cta { grid-column: 2; padding-top: var(--space-md); }
+  .tipo-row:hover .tipo-name { transform: none; }
+  .tipo-grid { grid-template-columns: 1fr; }
+  .tipologias-pending { text-align: left; }
+}
+
+/* ==========================================================================
    14 · STUDIOS
    ========================================================================== */
 .studios { background: var(--off-white); padding: var(--space-4xl) 0; }
