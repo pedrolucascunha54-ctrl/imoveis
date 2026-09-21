@@ -742,7 +742,8 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .numbers {
   background: var(--navy-deep); color: var(--paper);
   padding: var(--space-3xl) var(--edge);
-  display: grid; grid-template-columns: repeat(4, 1fr); max-width: var(--container-max); margin: 0 auto;
+  /* auto-fit: com blocos pendentes escondidos, os que sobram ocupam a largura toda */
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); max-width: var(--container-max); margin: 0 auto;
   gap: var(--space-lg);
 }
 .number-block { display: flex; flex-direction: column; gap: var(--space-sm); }
@@ -906,6 +907,13 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .footer-address { line-height: 1.55; }
 .footer-contact span { color: var(--paper); }
 .footer-contact .legal { margin-top: var(--space-md); font-family: var(--font-mono); font-size: 11px; line-height: 1.7; letter-spacing: .01em; }
+
+/* ==========================================================================
+   PLACEHOLDERS — o que ainda não foi confirmado
+   Com tráfego pago rodando, nada entre [colchetes] deve aparecer para o
+   visitante. Para revisar o que falta, comente só a linha do display:none.
+   ========================================================================== */
+.is-pending { display: none !important; }
 
 /* ==========================================================================
    28 · WHATSAPP FLUTUANTE
