@@ -423,23 +423,8 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
   text-transform: uppercase; color: var(--muted-light);
 }
 .tipo-includes i, .tipo-place i { font-style: normal; color: var(--gold); padding: 0 2px; }
+.tipo-includes b { font-weight: 400; color: var(--gold); }
 .tipo-place { color: var(--ink); opacity: .7; }
-
-/* Coluna da direita: preço em destaque acima do CTA */
-.tipo-aside {
-  display: flex; flex-direction: column; align-items: flex-end;
-  text-align: right; white-space: nowrap; padding-top: .35em;
-}
-.tipo-price {
-  font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.75rem);
-  line-height: 1.1; color: var(--ink);
-}
-.tipo-price i { font-style: normal; font-family: var(--font-mono); font-size: .5em; color: var(--muted-light); }
-.tipo-price-note {
-  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--gold); margin-top: 2px;
-}
-.tipo-aside .tipo-cta { padding-top: var(--space-md); }
 
 .tipo-cta {
   font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
@@ -471,11 +456,6 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 @media (max-width: 768px) {
   .tipo-row { grid-template-columns: auto 1fr; gap: var(--space-md); padding: var(--space-lg) 0; }
   .tipo-row .tipo-cta { grid-column: 2; padding-top: var(--space-md); }
-  .tipo-row .tipo-aside {
-    grid-column: 2; align-items: flex-start; text-align: left;
-    padding-top: var(--space-md); white-space: normal;
-  }
-  .tipo-aside .tipo-cta { padding-top: var(--space-sm); }
   .tipo-row:hover .tipo-name { transform: none; }
   .tipo-grid { grid-template-columns: 1fr; }
   .tipologias-pending { text-align: left; }
