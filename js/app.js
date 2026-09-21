@@ -915,6 +915,17 @@ const AGENDA = {
       action: 'Ver condição',
       html: () => '<strong>Executivos</strong> têm condição especial para estadias corporativas',
     },
+    {
+      wa: 'visita',
+      action: 'Consultar',
+      html: () => `<strong>${AGENDA.dayLabel()}</strong>, <strong>${AGENDA.currentTime}</strong> disponível para visita`,
+      advance: () => nextSlot(),
+    },
+    {
+      wa: 'estudante',
+      action: 'Ver desconto',
+      html: () => '<strong>Descontos exclusivos</strong> para estudantes',
+    },
   ];
 
   let slotIndex = Math.floor(Math.random() * AGENDA.slots.length);
