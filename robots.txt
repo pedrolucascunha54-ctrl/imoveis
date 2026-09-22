@@ -1,0 +1,13 @@
+# Luctor Imóveis — https://www.luctorimoveis.com.br
+User-agent: *
+Allow: /
+
+# Liberação explícita dos assets: bloquear CSS/JS/mídia impede o Google de
+# renderizar a página e avaliar a experiência corretamente.
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /video/
+Allow: /frames/
+
+Sitemap: https://www.luctorimoveis.com.br/sitemap.xml

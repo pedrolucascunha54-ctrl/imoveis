@@ -887,7 +887,8 @@ section[class] > h2, section[class] > .eyebrow { max-width: var(--container-max)
 .footer-nav a { color: var(--muted-dark); }
 .footer-nav a:hover { color: var(--paper); }
 .footer-contact { max-width: 620px; margin: 0 auto; text-align: center; font-size: 13px; color: var(--muted-dark); display: flex; flex-direction: column; gap: 6px; }
-.footer-address { line-height: 1.55; }
+/* <address> é semântico para o endereço; o itálico é padrão do navegador, não do projeto */
+.footer-address { line-height: 1.55; font-style: normal; }
 .footer-contact span { color: var(--paper); }
 .footer-contact .legal { margin-top: var(--space-md); font-family: var(--font-mono); font-size: 11px; line-height: 1.7; letter-spacing: .01em; }
 
